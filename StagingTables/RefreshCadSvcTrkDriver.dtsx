@@ -1,0 +1,1333 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/30/2016 3:28:17 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="AAA-MONTEREY"
+  DTS:CreatorName="AAACOLORADO\katach"
+  DTS:DTSID="{B4C862F4-52D8-4F01-8C8D-D780EC099CC0}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2164.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="RefreshCadSvcTrkDriver"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{57C0A674-91CC-45D6-B25D-A107B9D0E4A7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[D3 DR]"
+      DTS:CreationName="MSORA"
+      DTS:DTSID="{D396F2AB-6F0E-4F89-9DDF-0E71B8E0A682}"
+      DTS:ObjectName="D3 DR">
+      <DTS:ObjectData>
+        <OracleXMLPackage>
+          <OraConnectionString>SERVER=AAA-DRD3HOST-SCAN:1521/d3prodsb_app;USERNAME=sql_reports;ORACLEHOME=;ORACLEHOME64=;WINAUTH=0</OraConnectionString>
+          <OraRetain>False</OraRetain>
+          <OraInitialCatalog></OraInitialCatalog>
+          <OraServerName>AAA-DRD3HOST-SCAN:1521/d3prodsb_app</OraServerName>
+          <OraUserName>sql_reports</OraUserName>
+          <OraOracleHome></OraOracleHome>
+          <OraOracleHome64></OraOracleHome64>
+          <OraWinAuthentication>False</OraWinAuthentication>
+          <OraEnableDetailedTracing>False</OraEnableDetailedTracing>
+          <OraPassword
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA+3oyJfaDIEyAO/B8uTG0UwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAem8uHlkwSNfO2Eaa6CMSqAAAAAASAAACgAAAAEAAAAOSKzF+cyyu+CrH3fVf4BKQYAAAASNzNvZkUSlCyvf1HeERnQblAQrwAOwNkFAAAAHHFUfiATyQGMnU1qFzF9/hQKU/E</OraPassword>
+        </OracleXMLPackage>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D36C9505-413E-4ECF-BEA6-763F0746A271}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stg].[CadSvcTrkDriver]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{6C8F66EB-762F-43E8-810E-8A445CA34FE0}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AAA-MONTEREY.D3Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SVC_FACL_ID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="SVC_FACL_ID"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SVC_FACL_ID]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[SVC_FACL_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TRK_DRIVR_ID]"
+                      cachedDataType="numeric"
+                      cachedName="TRK_DRIVR_ID"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_ID]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TRK_DRIVR_FST_NM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="TRK_DRIVR_FST_NM"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_FST_NM]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_FST_NM]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TRK_DRIVR_LST_NM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="TRK_DRIVR_LST_NM"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_LST_NM]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_LST_NM]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TRK_DRIVR_TEL_NR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="TRK_DRIVR_TEL_NR"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_TEL_NR]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_TEL_NR]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TRK_DRIVR_TEL_X_NR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="TRK_DRIVR_TEL_X_NR"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_TEL_X_NR]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_TEL_X_NR]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TRK_DRIVR_TEL_T_CD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="TRK_DRIVR_TEL_T_CD"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_TEL_T_CD]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_TEL_T_CD]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAGER_PROVIDER_ID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="12"
+                      cachedName="PAGER_PROVIDER_ID"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAGER_PROVIDER_ID]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAGER_PROVIDER_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAGER_TYPE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="PAGER_TYPE"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAGER_TYPE]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAGER_TYPE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAGER_PIN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="PAGER_PIN"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAGER_PIN]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAGER_PIN]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TRK_DRIVR_BSC_AD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="TRK_DRIVR_BSC_AD"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_BSC_AD]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_BSC_AD]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TRK_DRIVR_CTY_NM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="TRK_DRIVR_CTY_NM"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_CTY_NM]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_CTY_NM]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TRK_DRIVR_ST_CD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="TRK_DRIVR_ST_CD"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_ST_CD]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_ST_CD]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TRK_DRIVR_ZIP_CD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="TRK_DRIVR_ZIP_CD"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_ZIP_CD]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_ZIP_CD]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[UNLOCK_LICENSE_ID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="UNLOCK_LICENSE_ID"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UNLOCK_LICENSE_ID]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[UNLOCK_LICENSE_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[UNLOCK_LICENSE_DT]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="UNLOCK_LICENSE_DT"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UNLOCK_LICENSE_DT]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[UNLOCK_LICENSE_DT]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TRK_DRIVR_COMMENTS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="TRK_DRIVR_COMMENTS"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_COMMENTS]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_COMMENTS]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TECH_LEVEL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="TECH_LEVEL"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TECH_LEVEL]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TECH_LEVEL]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TRK_DRIVR_RPST_TRAINED]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="TRK_DRIVR_RPST_TRAINED"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_RPST_TRAINED]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_RPST_TRAINED]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TRK_DRIVR_RPST_TRAINED_DT]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="TRK_DRIVR_RPST_TRAINED_DT"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_RPST_TRAINED_DT]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_RPST_TRAINED_DT]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DRIVER_PREFERENCE]"
+                      cachedDataType="i2"
+                      cachedName="DRIVER_PREFERENCE"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DRIVER_PREFERENCE]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[DRIVER_PREFERENCE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EMAILADDRESS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="64"
+                      cachedName="EMAILADDRESS"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EMAILADDRESS]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[EMAILADDRESS]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LAST_UPDT_TS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="75"
+                      cachedName="LAST_UPDT_TS"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LAST_UPDT_TS]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[LAST_UPDT_TS]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LOGIN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="LOGIN"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LOGIN]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[LOGIN]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DRIVER_ROLE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="DRIVER_ROLE"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DRIVER_ROLE]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[DRIVER_ROLE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SPMG_GROUP]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="SPMG_GROUP"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SPMG_GROUP]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[SPMG_GROUP]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DRIVER_PHOTO_URL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DRIVER_PHOTO_URL"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DRIVER_PHOTO_URL]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[DRIVER_PHOTO_URL]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SVC_FACL_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="SVC_FACL_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_ID]"
+                      dataType="numeric"
+                      name="TRK_DRIVR_ID"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_FST_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="TRK_DRIVR_FST_NM" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_LST_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="TRK_DRIVR_LST_NM" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_TEL_NR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="TRK_DRIVR_TEL_NR" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_TEL_X_NR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="TRK_DRIVR_TEL_X_NR" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_TEL_T_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="TRK_DRIVR_TEL_T_CD" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAGER_PROVIDER_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      name="PAGER_PROVIDER_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAGER_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="PAGER_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAGER_PIN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="PAGER_PIN" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_BSC_AD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="TRK_DRIVR_BSC_AD" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_CTY_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="TRK_DRIVR_CTY_NM" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_ST_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="TRK_DRIVR_ST_CD" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_ZIP_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="TRK_DRIVR_ZIP_CD" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UNLOCK_LICENSE_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="UNLOCK_LICENSE_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UNLOCK_LICENSE_DT]"
+                      dataType="dbTimeStamp2"
+                      name="UNLOCK_LICENSE_DT"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_COMMENTS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="TRK_DRIVR_COMMENTS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TECH_LEVEL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="TECH_LEVEL" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_RPST_TRAINED]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="TRK_DRIVR_RPST_TRAINED" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRK_DRIVR_RPST_TRAINED_DT]"
+                      dataType="dbTimeStamp2"
+                      name="TRK_DRIVR_RPST_TRAINED_DT"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DRIVER_PREFERENCE]"
+                      dataType="numeric"
+                      name="DRIVER_PREFERENCE"
+                      precision="4" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EMAILADDRESS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="64"
+                      name="EMAILADDRESS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LAST_UPDT_TS]"
+                      dataType="dbTimeStamp2"
+                      name="LAST_UPDT_TS"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LOGIN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="LOGIN" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DRIVER_ROLE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="DRIVER_ROLE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SPMG_GROUP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="SPMG_GROUP" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DRIVER_PHOTO_URL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DRIVER_PHOTO_URL" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Oracle Source"
+              componentClassID="Attunity.SSISOraSrc"
+              contactInfo="Oracle Source;Microsoft Connector for Oracle by Attunity; Attunity Ltd.; All Rights Reserved; http://www.attunity.com;5"
+              description="Microsoft Oracle Source Component by Attunity"
+              name="Oracle Source"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The name of the table to be fetched."
+                  expressionType="Notify"
+                  name="TableName">"DEN_CAD"."SVC_TRK_DRIVER"</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of rows fetched in a batch."
+                  expressionType="Notify"
+                  name="BatchSize">100</property>
+                <property
+                  dataType="System.Int32"
+                  description="Number of pre-fetched rows."
+                  expressionType="Notify"
+                  name="PrefetchCount">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines the chunk size allocation for LOB columns"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Int32"
+                  description="The code page to use when code page information is unavailable from the data source."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="The mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Oracle Source.Connections[MSOraConnection]"
+                  connectionManagerID="Package.ConnectionManagers[D3 DR]"
+                  connectionManagerRefId="Package.ConnectionManagers[D3 DR]"
+                  description="The Oracle runtime connection"
+                  name="MSOraConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output]"
+                  errorRowDisposition="FailComponent"
+                  name="Oracle Source Output"
+                  truncationRowDisposition="FailComponent">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[SVC_FACL_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[SVC_FACL_ID]"
+                      length="6"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[SVC_FACL_ID]"
+                      name="SVC_FACL_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_ID]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_ID]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_ID]"
+                      name="TRK_DRIVR_ID"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_FST_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_FST_NM]"
+                      length="15"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_FST_NM]"
+                      name="TRK_DRIVR_FST_NM" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_LST_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_LST_NM]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_LST_NM]"
+                      name="TRK_DRIVR_LST_NM" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_TEL_NR]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_TEL_NR]"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_TEL_NR]"
+                      name="TRK_DRIVR_TEL_NR" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_TEL_X_NR]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_TEL_X_NR]"
+                      length="5"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_TEL_X_NR]"
+                      name="TRK_DRIVR_TEL_X_NR" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_TEL_T_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_TEL_T_CD]"
+                      length="2"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_TEL_T_CD]"
+                      name="TRK_DRIVR_TEL_T_CD" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAGER_PROVIDER_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAGER_PROVIDER_ID]"
+                      length="12"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAGER_PROVIDER_ID]"
+                      name="PAGER_PROVIDER_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAGER_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAGER_TYPE]"
+                      length="1"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAGER_TYPE]"
+                      name="PAGER_TYPE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAGER_PIN]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAGER_PIN]"
+                      length="25"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAGER_PIN]"
+                      name="PAGER_PIN" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_BSC_AD]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_BSC_AD]"
+                      length="25"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_BSC_AD]"
+                      name="TRK_DRIVR_BSC_AD" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_CTY_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_CTY_NM]"
+                      length="40"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_CTY_NM]"
+                      name="TRK_DRIVR_CTY_NM" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_ST_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_ST_CD]"
+                      length="2"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_ST_CD]"
+                      name="TRK_DRIVR_ST_CD" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_ZIP_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_ZIP_CD]"
+                      length="9"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_ZIP_CD]"
+                      name="TRK_DRIVR_ZIP_CD" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[UNLOCK_LICENSE_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[UNLOCK_LICENSE_ID]"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[UNLOCK_LICENSE_ID]"
+                      name="UNLOCK_LICENSE_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[UNLOCK_LICENSE_DT]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[UNLOCK_LICENSE_DT]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[UNLOCK_LICENSE_DT]"
+                      name="UNLOCK_LICENSE_DT" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_COMMENTS]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_COMMENTS]"
+                      length="250"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_COMMENTS]"
+                      name="TRK_DRIVR_COMMENTS" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TECH_LEVEL]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TECH_LEVEL]"
+                      length="1"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TECH_LEVEL]"
+                      name="TECH_LEVEL" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_RPST_TRAINED]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_RPST_TRAINED]"
+                      length="1"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_RPST_TRAINED]"
+                      name="TRK_DRIVR_RPST_TRAINED" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_RPST_TRAINED_DT]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_RPST_TRAINED_DT]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRK_DRIVR_RPST_TRAINED_DT]"
+                      name="TRK_DRIVR_RPST_TRAINED_DT" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[DRIVER_PREFERENCE]"
+                      dataType="i2"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[DRIVER_PREFERENCE]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[DRIVER_PREFERENCE]"
+                      name="DRIVER_PREFERENCE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[EMAILADDRESS]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[EMAILADDRESS]"
+                      length="64"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[EMAILADDRESS]"
+                      name="EMAILADDRESS" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[LAST_UPDT_TS]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[LAST_UPDT_TS]"
+                      length="75"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[LAST_UPDT_TS]"
+                      name="LAST_UPDT_TS" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[LOGIN]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[LOGIN]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[LOGIN]"
+                      name="LOGIN" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[DRIVER_ROLE]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[DRIVER_ROLE]"
+                      length="2"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[DRIVER_ROLE]"
+                      name="DRIVER_ROLE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[SPMG_GROUP]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[SPMG_GROUP]"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[SPMG_GROUP]"
+                      name="SPMG_GROUP" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[DRIVER_PHOTO_URL]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[DRIVER_PHOTO_URL]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[DRIVER_PHOTO_URL]"
+                      name="DRIVER_PHOTO_URL" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[SVC_FACL_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="SVC_FACL_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_ID]"
+                      dataType="numeric"
+                      name="TRK_DRIVR_ID"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_FST_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="TRK_DRIVR_FST_NM" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_LST_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="TRK_DRIVR_LST_NM" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_TEL_NR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="TRK_DRIVR_TEL_NR" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_TEL_X_NR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="TRK_DRIVR_TEL_X_NR" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_TEL_T_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="TRK_DRIVR_TEL_T_CD" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAGER_PROVIDER_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      name="PAGER_PROVIDER_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAGER_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="PAGER_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAGER_PIN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="PAGER_PIN" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_BSC_AD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="TRK_DRIVR_BSC_AD" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_CTY_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="TRK_DRIVR_CTY_NM" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_ST_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="TRK_DRIVR_ST_CD" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_ZIP_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="TRK_DRIVR_ZIP_CD" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[UNLOCK_LICENSE_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="UNLOCK_LICENSE_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[UNLOCK_LICENSE_DT]"
+                      dataType="dbTimeStamp"
+                      name="UNLOCK_LICENSE_DT" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_COMMENTS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="TRK_DRIVR_COMMENTS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TECH_LEVEL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="TECH_LEVEL" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_RPST_TRAINED]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="TRK_DRIVR_RPST_TRAINED" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_RPST_TRAINED_DT]"
+                      dataType="dbTimeStamp"
+                      name="TRK_DRIVR_RPST_TRAINED_DT" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[DRIVER_PREFERENCE]"
+                      dataType="i2"
+                      name="DRIVER_PREFERENCE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[EMAILADDRESS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="64"
+                      name="EMAILADDRESS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[LAST_UPDT_TS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="75"
+                      name="LAST_UPDT_TS" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[LOGIN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="LOGIN" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[DRIVER_ROLE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="DRIVER_ROLE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[SPMG_GROUP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="SPMG_GROUP" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[DRIVER_PHOTO_URL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DRIVER_PHOTO_URL" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output]"
+                  isErrorOut="true"
+                  name="Oracle Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[SVC_FACL_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[SVC_FACL_ID]"
+                      length="6"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[SVC_FACL_ID]"
+                      name="SVC_FACL_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_ID]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_ID]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_ID]"
+                      name="TRK_DRIVR_ID"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_FST_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_FST_NM]"
+                      length="15"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_FST_NM]"
+                      name="TRK_DRIVR_FST_NM" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_LST_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_LST_NM]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_LST_NM]"
+                      name="TRK_DRIVR_LST_NM" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_TEL_NR]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_TEL_NR]"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_TEL_NR]"
+                      name="TRK_DRIVR_TEL_NR" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_TEL_X_NR]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_TEL_X_NR]"
+                      length="5"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_TEL_X_NR]"
+                      name="TRK_DRIVR_TEL_X_NR" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_TEL_T_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_TEL_T_CD]"
+                      length="2"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_TEL_T_CD]"
+                      name="TRK_DRIVR_TEL_T_CD" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAGER_PROVIDER_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAGER_PROVIDER_ID]"
+                      length="12"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAGER_PROVIDER_ID]"
+                      name="PAGER_PROVIDER_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAGER_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAGER_TYPE]"
+                      length="1"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAGER_TYPE]"
+                      name="PAGER_TYPE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAGER_PIN]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAGER_PIN]"
+                      length="25"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAGER_PIN]"
+                      name="PAGER_PIN" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_BSC_AD]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_BSC_AD]"
+                      length="25"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_BSC_AD]"
+                      name="TRK_DRIVR_BSC_AD" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_CTY_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_CTY_NM]"
+                      length="40"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_CTY_NM]"
+                      name="TRK_DRIVR_CTY_NM" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_ST_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_ST_CD]"
+                      length="2"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_ST_CD]"
+                      name="TRK_DRIVR_ST_CD" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_ZIP_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_ZIP_CD]"
+                      length="9"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_ZIP_CD]"
+                      name="TRK_DRIVR_ZIP_CD" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[UNLOCK_LICENSE_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[UNLOCK_LICENSE_ID]"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[UNLOCK_LICENSE_ID]"
+                      name="UNLOCK_LICENSE_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[UNLOCK_LICENSE_DT]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[UNLOCK_LICENSE_DT]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[UNLOCK_LICENSE_DT]"
+                      name="UNLOCK_LICENSE_DT" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_COMMENTS]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_COMMENTS]"
+                      length="250"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_COMMENTS]"
+                      name="TRK_DRIVR_COMMENTS" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TECH_LEVEL]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TECH_LEVEL]"
+                      length="1"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TECH_LEVEL]"
+                      name="TECH_LEVEL" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_RPST_TRAINED]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_RPST_TRAINED]"
+                      length="1"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_RPST_TRAINED]"
+                      name="TRK_DRIVR_RPST_TRAINED" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_RPST_TRAINED_DT]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRK_DRIVR_RPST_TRAINED_DT]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRK_DRIVR_RPST_TRAINED_DT]"
+                      name="TRK_DRIVR_RPST_TRAINED_DT" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[DRIVER_PREFERENCE]"
+                      dataType="i2"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[DRIVER_PREFERENCE]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[DRIVER_PREFERENCE]"
+                      name="DRIVER_PREFERENCE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[EMAILADDRESS]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[EMAILADDRESS]"
+                      length="64"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[EMAILADDRESS]"
+                      name="EMAILADDRESS" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[LAST_UPDT_TS]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[LAST_UPDT_TS]"
+                      length="75"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[LAST_UPDT_TS]"
+                      name="LAST_UPDT_TS" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[LOGIN]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[LOGIN]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[LOGIN]"
+                      name="LOGIN" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[DRIVER_ROLE]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[DRIVER_ROLE]"
+                      length="2"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[DRIVER_ROLE]"
+                      name="DRIVER_ROLE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[SPMG_GROUP]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[SPMG_GROUP]"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[SPMG_GROUP]"
+                      name="SPMG_GROUP" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[DRIVER_PHOTO_URL]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[DRIVER_PHOTO_URL]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[DRIVER_PHOTO_URL]"
+                      name="DRIVER_PHOTO_URL" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Oracle Source Output]"
+              endId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Oracle Source Output"
+              startId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Truncate staging table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D56E9D45-7926-4D31-9647-E73E7239396B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Truncate staging table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6C8F66EB-762F-43E8-810E-8A445CA34FE0}"
+          SQLTask:SqlStatementSource="truncate table stg.CadSvcTrkDriver" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{6FD081D9-D894-474F-9E5A-6C379544807A}"
+      DTS:From="Package\SQL Truncate staging table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Data Flow Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Data Flow Task"
+          TopLeft="197,137" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\SQL Truncate staging table"
+          TopLeft="164,43" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="270,85">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Data Flow Task\Oracle Source"
+          TopLeft="176,52" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Data Flow Task\OLE DB Destination"
+          TopLeft="169,167" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Oracle Source Output]"
+          TopLeft="251.25,94">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,73"
+              Start="0,0"
+              End="0,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Oracle Source">
+    <Properties>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

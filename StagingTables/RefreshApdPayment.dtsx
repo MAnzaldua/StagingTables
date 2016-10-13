@@ -1,0 +1,1469 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/21/2016 1:42:06 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="AAA-MONTEREY"
+  DTS:CreatorName="AAACOLORADO\katach"
+  DTS:DTSID="{BE86642F-DB46-4D14-A0B6-ECD9C4D0D484}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2164.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="RefreshApdPayment"
+  DTS:PackageType="5"
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{775E1321-E45C-4CD7-A9F9-229F9F2297AA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[D3 DR]"
+      DTS:CreationName="MSORA"
+      DTS:DTSID="{01246A7E-697B-4D62-876E-2D8D69042919}"
+      DTS:ObjectName="D3 DR">
+      <DTS:ObjectData>
+        <OracleXMLPackage>
+          <OraConnectionString>SERVER=AAA-DRD3HOST-SCAN:1521/d3prodsb_app;USERNAME=sql_reports;ORACLEHOME=;ORACLEHOME64=;WINAUTH=0</OraConnectionString>
+          <OraRetain>False</OraRetain>
+          <OraInitialCatalog></OraInitialCatalog>
+          <OraServerName>AAA-DRD3HOST-SCAN:1521/d3prodsb_app</OraServerName>
+          <OraUserName>sql_reports</OraUserName>
+          <OraOracleHome></OraOracleHome>
+          <OraOracleHome64></OraOracleHome64>
+          <OraWinAuthentication>False</OraWinAuthentication>
+          <OraEnableDetailedTracing>False</OraEnableDetailedTracing>
+          <OraPassword
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA+3oyJfaDIEyAO/B8uTG0UwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACuqHtGCjfWhnvviYIkVdJFAAAAAASAAACgAAAAEAAAAPDcexIlRNFT8RIdd9D0dhAYAAAAwt4Q+PYuHX+fTLZxRMgQ7CfdyZGOtr8YFAAAAIWob5OJOIMxyqmrkzIhgB3E6076</OraPassword>
+        </OracleXMLPackage>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D3E0B0A3-2DE0-4359-B77F-9EEC9AE00F82}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferMaxRows="20000"
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stg].[ApdPayment]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{6C8F66EB-762F-43E8-810E-8A445CA34FE0}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AAA-MONTEREY.D3Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_ID]"
+                      cachedDataType="numeric"
+                      cachedName="PAY_ID"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_ID]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CHK_ID]"
+                      cachedDataType="numeric"
+                      cachedName="CHK_ID"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CHK_ID]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[CHK_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CLB_CD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="CLB_CD"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CLB_CD]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[CLB_CD]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MBR_ID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="MBR_ID"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MBR_ID]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[MBR_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ASSOC_MBR_ID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="ASSOC_MBR_ID"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ASSOC_MBR_ID]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[ASSOC_MBR_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="PAY_DATE"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_DATE]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_DATE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_TYPE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="PAY_TYPE"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_TYPE]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_TYPE]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CHECK_STUB_CD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="CHECK_STUB_CD"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CHECK_STUB_CD]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[CHECK_STUB_CD]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FACIL_INT_ID]"
+                      cachedDataType="numeric"
+                      cachedName="FACIL_INT_ID"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FACIL_INT_ID]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[FACIL_INT_ID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_METHOD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="PAY_METHOD"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_METHOD]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_METHOD]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_AMOUNT]"
+                      cachedDataType="numeric"
+                      cachedName="PAY_AMOUNT"
+                      cachedPrecision="8"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_AMOUNT]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_AMOUNT]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_PERIOD_START]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="PAY_PERIOD_START"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_PERIOD_START]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_PERIOD_START]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_PERIOD_END]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="PAY_PERIOD_END"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_PERIOD_END]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_PERIOD_END]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_EIN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="16"
+                      cachedName="PAY_EIN"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_EIN]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_EIN]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAID_IND]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="PAID_IND"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAID_IND]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAID_IND]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TRANS_NUM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="TRANS_NUM"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRANS_NUM]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRANS_NUM]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_BASIC]"
+                      cachedDataType="numeric"
+                      cachedName="PAY_BASIC"
+                      cachedPrecision="8"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_BASIC]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_BASIC]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_PLUS]"
+                      cachedDataType="numeric"
+                      cachedName="PAY_PLUS"
+                      cachedPrecision="8"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_PLUS]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_PLUS]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_DEBIT_ADJ]"
+                      cachedDataType="numeric"
+                      cachedName="PAY_DEBIT_ADJ"
+                      cachedPrecision="8"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_DEBIT_ADJ]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_DEBIT_ADJ]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_RBASIC]"
+                      cachedDataType="numeric"
+                      cachedName="PAY_RBASIC"
+                      cachedPrecision="8"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_RBASIC]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_RBASIC]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_RPLUS]"
+                      cachedDataType="numeric"
+                      cachedName="PAY_RPLUS"
+                      cachedPrecision="8"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_RPLUS]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_RPLUS]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_PLUSRV]"
+                      cachedDataType="numeric"
+                      cachedName="PAY_PLUSRV"
+                      cachedPrecision="8"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_PLUSRV]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_PLUSRV]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_TAX1]"
+                      cachedDataType="numeric"
+                      cachedName="PAY_TAX1"
+                      cachedPrecision="8"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_TAX1]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_TAX1]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_TAX2]"
+                      cachedDataType="numeric"
+                      cachedName="PAY_TAX2"
+                      cachedPrecision="8"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_TAX2]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_TAX2]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_CREDIT_ADJ]"
+                      cachedDataType="numeric"
+                      cachedName="PAY_CREDIT_ADJ"
+                      cachedPrecision="8"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_CREDIT_ADJ]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_CREDIT_ADJ]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_PREM]"
+                      cachedDataType="numeric"
+                      cachedName="PAY_PREM"
+                      cachedPrecision="8"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_PREM]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_PREM]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_PRRV]"
+                      cachedDataType="numeric"
+                      cachedName="PAY_PRRV"
+                      cachedPrecision="8"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_PRRV]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_PRRV]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_RPREM]"
+                      cachedDataType="numeric"
+                      cachedName="PAY_RPREM"
+                      cachedPrecision="8"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_RPREM]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_RPREM]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_RPRRV]"
+                      cachedDataType="numeric"
+                      cachedName="PAY_RPRRV"
+                      cachedPrecision="8"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_RPRRV]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_RPRRV]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_OTHER]"
+                      cachedDataType="numeric"
+                      cachedName="PAY_OTHER"
+                      cachedPrecision="8"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_OTHER]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_OTHER]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PAY_ROTHER]"
+                      cachedDataType="numeric"
+                      cachedName="PAY_ROTHER"
+                      cachedPrecision="8"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_ROTHER]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_ROTHER]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_ID]"
+                      dataType="numeric"
+                      name="PAY_ID"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CHK_ID]"
+                      dataType="numeric"
+                      name="CHK_ID"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CLB_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="CLB_CD" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MBR_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="MBR_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ASSOC_MBR_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="ASSOC_MBR_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_DATE]"
+                      dataType="dbTimeStamp2"
+                      name="PAY_DATE"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="PAY_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CHECK_STUB_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="CHECK_STUB_CD" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FACIL_INT_ID]"
+                      dataType="numeric"
+                      name="FACIL_INT_ID"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_METHOD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="PAY_METHOD" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_AMOUNT]"
+                      dataType="numeric"
+                      name="PAY_AMOUNT"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_PERIOD_START]"
+                      dataType="dbTimeStamp2"
+                      name="PAY_PERIOD_START"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_PERIOD_END]"
+                      dataType="dbTimeStamp2"
+                      name="PAY_PERIOD_END"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_EIN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="PAY_EIN" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAID_IND]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="PAID_IND" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRANS_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="TRANS_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_BASIC]"
+                      dataType="numeric"
+                      name="PAY_BASIC"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_PLUS]"
+                      dataType="numeric"
+                      name="PAY_PLUS"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_DEBIT_ADJ]"
+                      dataType="numeric"
+                      name="PAY_DEBIT_ADJ"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_RBASIC]"
+                      dataType="numeric"
+                      name="PAY_RBASIC"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_RPLUS]"
+                      dataType="numeric"
+                      name="PAY_RPLUS"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_PLUSRV]"
+                      dataType="numeric"
+                      name="PAY_PLUSRV"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_TAX1]"
+                      dataType="numeric"
+                      name="PAY_TAX1"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_TAX2]"
+                      dataType="numeric"
+                      name="PAY_TAX2"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_CREDIT_ADJ]"
+                      dataType="numeric"
+                      name="PAY_CREDIT_ADJ"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_PREM]"
+                      dataType="numeric"
+                      name="PAY_PREM"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_PRRV]"
+                      dataType="numeric"
+                      name="PAY_PRRV"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_RPREM]"
+                      dataType="numeric"
+                      name="PAY_RPREM"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_RPRRV]"
+                      dataType="numeric"
+                      name="PAY_RPRRV"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_OTHER]"
+                      dataType="numeric"
+                      name="PAY_OTHER"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PAY_ROTHER]"
+                      dataType="numeric"
+                      name="PAY_ROTHER"
+                      precision="8"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Oracle Source"
+              componentClassID="Attunity.SSISOraSrc"
+              contactInfo="Oracle Source;Microsoft Connector for Oracle by Attunity; Attunity Ltd.; All Rights Reserved; http://www.attunity.com;5"
+              description="Microsoft Oracle Source Component by Attunity"
+              name="Oracle Source"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The name of the table to be fetched."
+                  expressionType="Notify"
+                  name="TableName">"DEN_APD"."PAYMENT"</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of rows fetched in a batch."
+                  expressionType="Notify"
+                  name="BatchSize">10000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Number of pre-fetched rows."
+                  expressionType="Notify"
+                  name="PrefetchCount">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines the chunk size allocation for LOB columns"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Int32"
+                  description="The code page to use when code page information is unavailable from the data source."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="The mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Oracle Source.Connections[MSOraConnection]"
+                  connectionManagerID="Package.ConnectionManagers[D3 DR]"
+                  connectionManagerRefId="Package.ConnectionManagers[D3 DR]"
+                  description="The Oracle runtime connection"
+                  name="MSOraConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output]"
+                  errorRowDisposition="FailComponent"
+                  name="Oracle Source Output"
+                  truncationRowDisposition="FailComponent">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_ID]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_ID]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_ID]"
+                      name="PAY_ID"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[CHK_ID]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[CHK_ID]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[CHK_ID]"
+                      name="CHK_ID"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[CLB_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[CLB_CD]"
+                      length="3"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[CLB_CD]"
+                      name="CLB_CD" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[MBR_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[MBR_ID]"
+                      length="25"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[MBR_ID]"
+                      name="MBR_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[ASSOC_MBR_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[ASSOC_MBR_ID]"
+                      length="3"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[ASSOC_MBR_ID]"
+                      name="ASSOC_MBR_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_DATE]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_DATE]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_DATE]"
+                      name="PAY_DATE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_TYPE]"
+                      length="1"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_TYPE]"
+                      name="PAY_TYPE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[CHECK_STUB_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[CHECK_STUB_CD]"
+                      length="2"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[CHECK_STUB_CD]"
+                      name="CHECK_STUB_CD" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[FACIL_INT_ID]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[FACIL_INT_ID]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[FACIL_INT_ID]"
+                      name="FACIL_INT_ID"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_METHOD]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_METHOD]"
+                      length="1"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_METHOD]"
+                      name="PAY_METHOD" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_AMOUNT]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_AMOUNT]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_AMOUNT]"
+                      name="PAY_AMOUNT"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_PERIOD_START]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_PERIOD_START]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_PERIOD_START]"
+                      name="PAY_PERIOD_START" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_PERIOD_END]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_PERIOD_END]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_PERIOD_END]"
+                      name="PAY_PERIOD_END" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_EIN]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_EIN]"
+                      length="16"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_EIN]"
+                      name="PAY_EIN" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAID_IND]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAID_IND]"
+                      length="1"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAID_IND]"
+                      name="PAID_IND" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRANS_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRANS_NUM]"
+                      length="8"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[TRANS_NUM]"
+                      name="TRANS_NUM" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_BASIC]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_BASIC]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_BASIC]"
+                      name="PAY_BASIC"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_PLUS]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_PLUS]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_PLUS]"
+                      name="PAY_PLUS"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_DEBIT_ADJ]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_DEBIT_ADJ]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_DEBIT_ADJ]"
+                      name="PAY_DEBIT_ADJ"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_RBASIC]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_RBASIC]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_RBASIC]"
+                      name="PAY_RBASIC"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_RPLUS]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_RPLUS]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_RPLUS]"
+                      name="PAY_RPLUS"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_PLUSRV]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_PLUSRV]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_PLUSRV]"
+                      name="PAY_PLUSRV"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_TAX1]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_TAX1]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_TAX1]"
+                      name="PAY_TAX1"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_TAX2]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_TAX2]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_TAX2]"
+                      name="PAY_TAX2"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_CREDIT_ADJ]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_CREDIT_ADJ]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_CREDIT_ADJ]"
+                      name="PAY_CREDIT_ADJ"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_PREM]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_PREM]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_PREM]"
+                      name="PAY_PREM"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_PRRV]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_PRRV]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_PRRV]"
+                      name="PAY_PRRV"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_RPREM]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_RPREM]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_RPREM]"
+                      name="PAY_RPREM"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_RPRRV]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_RPRRV]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_RPRRV]"
+                      name="PAY_RPRRV"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_OTHER]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_OTHER]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_OTHER]"
+                      name="PAY_OTHER"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_ROTHER]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_ROTHER]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].Columns[PAY_ROTHER]"
+                      name="PAY_ROTHER"
+                      precision="8"
+                      scale="2" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_ID]"
+                      dataType="numeric"
+                      name="PAY_ID"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[CHK_ID]"
+                      dataType="numeric"
+                      name="CHK_ID"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[CLB_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="CLB_CD" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[MBR_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="MBR_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[ASSOC_MBR_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="ASSOC_MBR_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_DATE]"
+                      dataType="dbTimeStamp"
+                      name="PAY_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="PAY_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[CHECK_STUB_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="CHECK_STUB_CD" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[FACIL_INT_ID]"
+                      dataType="numeric"
+                      name="FACIL_INT_ID"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_METHOD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="PAY_METHOD" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_AMOUNT]"
+                      dataType="numeric"
+                      name="PAY_AMOUNT"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_PERIOD_START]"
+                      dataType="dbTimeStamp"
+                      name="PAY_PERIOD_START" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_PERIOD_END]"
+                      dataType="dbTimeStamp"
+                      name="PAY_PERIOD_END" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_EIN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="PAY_EIN" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAID_IND]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="PAID_IND" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRANS_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="TRANS_NUM" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_BASIC]"
+                      dataType="numeric"
+                      name="PAY_BASIC"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_PLUS]"
+                      dataType="numeric"
+                      name="PAY_PLUS"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_DEBIT_ADJ]"
+                      dataType="numeric"
+                      name="PAY_DEBIT_ADJ"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_RBASIC]"
+                      dataType="numeric"
+                      name="PAY_RBASIC"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_RPLUS]"
+                      dataType="numeric"
+                      name="PAY_RPLUS"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_PLUSRV]"
+                      dataType="numeric"
+                      name="PAY_PLUSRV"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_TAX1]"
+                      dataType="numeric"
+                      name="PAY_TAX1"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_TAX2]"
+                      dataType="numeric"
+                      name="PAY_TAX2"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_CREDIT_ADJ]"
+                      dataType="numeric"
+                      name="PAY_CREDIT_ADJ"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_PREM]"
+                      dataType="numeric"
+                      name="PAY_PREM"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_PRRV]"
+                      dataType="numeric"
+                      name="PAY_PRRV"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_RPREM]"
+                      dataType="numeric"
+                      name="PAY_RPREM"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_RPRRV]"
+                      dataType="numeric"
+                      name="PAY_RPRRV"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_OTHER]"
+                      dataType="numeric"
+                      name="PAY_OTHER"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_ROTHER]"
+                      dataType="numeric"
+                      name="PAY_ROTHER"
+                      precision="8"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output]"
+                  isErrorOut="true"
+                  name="Oracle Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_ID]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_ID]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_ID]"
+                      name="PAY_ID"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[CHK_ID]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[CHK_ID]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[CHK_ID]"
+                      name="CHK_ID"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[CLB_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[CLB_CD]"
+                      length="3"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[CLB_CD]"
+                      name="CLB_CD" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[MBR_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[MBR_ID]"
+                      length="25"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[MBR_ID]"
+                      name="MBR_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[ASSOC_MBR_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[ASSOC_MBR_ID]"
+                      length="3"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[ASSOC_MBR_ID]"
+                      name="ASSOC_MBR_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_DATE]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_DATE]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_DATE]"
+                      name="PAY_DATE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_TYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_TYPE]"
+                      length="1"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_TYPE]"
+                      name="PAY_TYPE" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[CHECK_STUB_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[CHECK_STUB_CD]"
+                      length="2"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[CHECK_STUB_CD]"
+                      name="CHECK_STUB_CD" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[FACIL_INT_ID]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[FACIL_INT_ID]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[FACIL_INT_ID]"
+                      name="FACIL_INT_ID"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_METHOD]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_METHOD]"
+                      length="1"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_METHOD]"
+                      name="PAY_METHOD" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_AMOUNT]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_AMOUNT]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_AMOUNT]"
+                      name="PAY_AMOUNT"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_PERIOD_START]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_PERIOD_START]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_PERIOD_START]"
+                      name="PAY_PERIOD_START" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_PERIOD_END]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_PERIOD_END]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_PERIOD_END]"
+                      name="PAY_PERIOD_END" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_EIN]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_EIN]"
+                      length="16"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_EIN]"
+                      name="PAY_EIN" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAID_IND]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAID_IND]"
+                      length="1"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAID_IND]"
+                      name="PAID_IND" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRANS_NUM]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[TRANS_NUM]"
+                      length="8"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[TRANS_NUM]"
+                      name="TRANS_NUM" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_BASIC]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_BASIC]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_BASIC]"
+                      name="PAY_BASIC"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_PLUS]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_PLUS]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_PLUS]"
+                      name="PAY_PLUS"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_DEBIT_ADJ]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_DEBIT_ADJ]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_DEBIT_ADJ]"
+                      name="PAY_DEBIT_ADJ"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_RBASIC]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_RBASIC]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_RBASIC]"
+                      name="PAY_RBASIC"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_RPLUS]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_RPLUS]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_RPLUS]"
+                      name="PAY_RPLUS"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_PLUSRV]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_PLUSRV]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_PLUSRV]"
+                      name="PAY_PLUSRV"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_TAX1]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_TAX1]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_TAX1]"
+                      name="PAY_TAX1"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_TAX2]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_TAX2]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_TAX2]"
+                      name="PAY_TAX2"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_CREDIT_ADJ]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_CREDIT_ADJ]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_CREDIT_ADJ]"
+                      name="PAY_CREDIT_ADJ"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_PREM]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_PREM]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_PREM]"
+                      name="PAY_PREM"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_PRRV]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_PRRV]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_PRRV]"
+                      name="PAY_PRRV"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_RPREM]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_RPREM]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_RPREM]"
+                      name="PAY_RPREM"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_RPRRV]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_RPRRV]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_RPRRV]"
+                      name="PAY_RPRRV"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_OTHER]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_OTHER]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_OTHER]"
+                      name="PAY_OTHER"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_ROTHER]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output].ExternalColumns[PAY_ROTHER]"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[PAY_ROTHER]"
+                      name="PAY_ROTHER"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Oracle Source Output]"
+              endId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Oracle Source Output"
+              startId="Package\Data Flow Task\Oracle Source.Outputs[Oracle Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Truncate staging table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{EC9A2CB4-9EF6-4878-9F37-52F835030D3F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Truncate staging table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6C8F66EB-762F-43E8-810E-8A445CA34FE0}"
+          SQLTask:SqlStatementSource="truncate table stg.ApdPayment" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{0FCC6BF8-364E-4276-91F2-BE5F414AD949}"
+      DTS:From="Package\SQL Truncate staging table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Data Flow Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Data Flow Task"
+          TopLeft="224.25,158" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\SQL Truncate staging table"
+          TopLeft="191.75,31" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="297.5,73">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,85"
+              Start="0,0"
+              End="0,77.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,77.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Data Flow Task\Oracle Source"
+          TopLeft="161.25,28" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Data Flow Task\OLE DB Destination"
+          TopLeft="147.75,167" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Oracle Source Output]"
+          TopLeft="233.25,70">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,97"
+              Start="0,0"
+              End="0,89.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,89.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Oracle Source">
+    <Properties>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
